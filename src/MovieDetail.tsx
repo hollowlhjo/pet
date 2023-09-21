@@ -1,41 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieDetails } from './moviedetailsHelp';
 
-interface MovieDetailProps {
-  // Додайте необхідні поля для відображення деталей фільму
-}
-
-const MovieDetail: React.FC<MovieDetailProps> = () => {
-  const { id } = useParams<{ id: string }>();
-  const movieId = id && parseInt(id, 10);
-  const [movie, setMovie] = useState<any>(null);
+const MovieDetails: React.FC = () => {
+  const { movieId } = useParams<{ movieId: string }>();
+  const [movieDetails, setMovieDetails] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
-      if (movieId) {
-        try {
-          const response = await getMovieDetails(movieId);
-          setMovie(response);
-        } catch (error) {
-          console.error('Error fetching movie details:', error);
-        }
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=89fb00a7179879e61d76ce1f542de91e`
+        );
+        const data = await response.json();
+        setMovieDetails(data);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
       }
     };
-  
+
     fetchMovieDetails();
   }, [movieId]);
-  if (!movie) {
-    return <div>Loading...</div>;
+
+  if (!movieDetails) {
+    return <div>Loading movie details...</div>;
   }
 
   return (
     <div>
-      <h2>{movie.title}</h2>
-      <p>{movie.overview}</p>
-      <p>Release Date: {movie.release_date}</p>
+      <h1>{movieDetails.title}</h1>
+      <p>{movieDetails.overview}</p>
     </div>
   );
 };
 
-export default MovieDetail;
+export default MovieDetails;
