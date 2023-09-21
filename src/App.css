@@ -4,16 +4,30 @@ a {
  }
 .header{
    background-color: black;
-   margin-top: -17px;
+   margin-top: -16px;
    margin-left: -30px;
    width: 1800px;
    height: 95px;
    border-radius: 0px 0px 60px 60px;
 } 
 .reg{
-   position:absolute;
-   left:1645px
+   position: absolute;
+   top: 0px;
+   left: 1640px;
+   width: 10%;
+   margin-right: 30px;
 }
 .home{
-   position:absolute
+   position: absolute;
+   top: 0px;
+   left: 39px;
+   width: 10%;
+   margin-right: 30px;
+}
+.favourites{
+   position: absolute;
+   top: 0px;
+   left: 810px;
+   width: 10%;
+   margin-right: 30px;
 }

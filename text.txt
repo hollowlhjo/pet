@@ -1,0 +1,12 @@
+`https://image.tmdb.org/t/p/w200${movie.poster_path}            
+
+
+
+ <div key={movie.id} style={{ width: "200px", margin: "10px" }}>
+    <img
+        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+        alt={movie.title}
+        style={{ width: "100%" }}
+    />
+    <a href={`/movie/${movie.id}`}>{movie.title}</a>
+</div>
